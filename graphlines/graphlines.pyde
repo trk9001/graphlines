@@ -88,7 +88,9 @@ def configure_serial_port():
 def draw_line(x1, y1, x2, y2, color):
     """Draw a colored line on the Cartesian plane."""
     stroke(color)  # set the line's color
-    line(x1, height + Y_START - y1, x2, height + Y_START - y2)
+    y1 = height - Y_START - y1
+    y2 = height - Y_START - y2
+    line(x1, y2, x2, y2)
 
 
 def reset_background():
@@ -123,10 +125,11 @@ def update_data(values):
     global data
     # Note: 'map' here is a Processing function that scales data
     data = [
-        map(int(v), MIN_Y, MAX_Y, Y_START, height - Y_START)
-        if SCALING_ENABLED else int(v)
+        map(v, MIN_Y, MAX_Y, Y_START, height - Y_START)
+        if SCALING_ENABLED else v
         for v in values
     ]
+    data = [int(v) for v in data]
     print_data()
 
 
