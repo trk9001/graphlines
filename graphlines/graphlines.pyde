@@ -90,7 +90,7 @@ def draw_line(x1, y1, x2, y2, color):
     stroke(color)  # set the line's color
     y1 = height - Y_START - y1
     y2 = height - Y_START - y2
-    line(x1, y2, x2, y2)
+    line(x1, y1, x2, y2)
 
 
 def reset_background():
